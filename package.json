@@ -1,6 +1,6 @@
 {
   "name": "markdown-diagram",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "generate diagrams from markdown documents",
   "main": "./src/main",
   "homepage": "http://benjamine.github.io/markdown-diagram",
