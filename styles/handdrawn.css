@@ -1,0 +1,15 @@
+
+svg .node polygon {
+  fill: none;
+  stroke: rgb(99, 99, 99);
+  stroke-width: 2;
+  filter: url(#squiggle);
+}
+
+svg .graph > polygon {
+  stroke: none;
+}
+
+svg text {
+  font-family: 'Cabin Sketch', cursive;
+}
