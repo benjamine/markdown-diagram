@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "generate diagrams from markdown documents",
   "main": "./src/main",
+  "homepage": "http://benjamine.github.io/markdown-diagram",
   "scripts": {
     "test": "gulp test && gulp test-browser",
     "bump": "gulp bump",
