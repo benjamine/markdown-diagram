@@ -10,7 +10,7 @@ exports.load = require('./load');
 
 if (process.browser) {
   // exports only for browser bundle
-  exports.version = '0.0.2';
+  exports.version = '0.0.3';
   exports.homepage = ',';
 } else {
   // exports only for node.js
