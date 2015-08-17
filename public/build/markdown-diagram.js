@@ -10,7 +10,7 @@ exports.load = require('./load');
 
 if (process.browser) {
   // exports only for browser bundle
-  exports.version = '0.0.5';
+  exports.version = '0.0.6';
   exports.homepage = 'http://benjamine.github.io/markdown-diagram';
 } else {
   // exports only for node.js
