@@ -1,0 +1,28 @@
+{
+  "name": "markdown-diagram",
+  "description": "generate diagrams from markdown documents",
+  "main": "markdown-diagram.js",
+  "license": "MIT",
+  "authors": [
+    "Benjamin Eidelman <beneidel@gmail.com>"
+  ],
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "keywords": [
+    "markdown",
+		"diagram",
+		"svg",
+		"draw",
+		"graph"
+  ],
+  "ignore": [
+    "test",
+    "demo",
+    "docs",
+    ".travis.yml",
+    "karma.conf.js",
+    "gulpfile.js"
+  ]
+}
