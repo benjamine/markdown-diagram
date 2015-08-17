@@ -1,6 +1,7 @@
 
 // global exports
 
+require('./polyfills');
 exports.generate = require('./generator').generate;
 exports.ajax = require('./ajax');
 exports.load = require('./load');
