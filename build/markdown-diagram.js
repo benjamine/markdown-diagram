@@ -10,8 +10,8 @@ exports.load = require('./load');
 
 if (process.browser) {
   // exports only for browser bundle
-  exports.version = '0.0.3';
-  exports.homepage = ',';
+  exports.version = '0.0.4';
+  exports.homepage = 'http://benjamine.github.io/markdown-diagram';
 } else {
   // exports only for node.js
   var packageInfo = require('../pack' + 'age.json');
