@@ -21,11 +21,11 @@ describe('markdownDiagram', function() {
       }
       var md;
       if (process.browser) {
-        // markdownDiagram.ajax('/public/demo/demo.md', processMarkdown);
+        // markdownDiagram.ajax('/public/demo/services.md', processMarkdown);
         done();
         return;
       } else {
-        md = fs.readFileSync(path.join(__dirname, '..', 'public', 'demo', 'demo.md')).toString();
+        md = fs.readFileSync(path.join(__dirname, '..', 'public', 'demo', 'services.md')).toString();
         processMarkdown(md);
       }
     });

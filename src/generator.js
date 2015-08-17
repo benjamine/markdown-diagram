@@ -1,7 +1,6 @@
 var _ = require('lodash');
 var cheerio = require('cheerio');
 var MarkdownIt = require('markdown-it');
-var markdownItAnchor = require('markdown-it-anchor');
 
 function requireVizJs() {
   if (process.browser) {
