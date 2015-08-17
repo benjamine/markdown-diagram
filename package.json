@@ -29,6 +29,7 @@
     "lodash": "^3.10.1",
     "markdown-it": "^4.4.0",
     "markdown-it-anchor": "^2.3.0",
+    "markdown-it-highlightjs": "^2.0.0",
     "markup": "0.0.4",
     "viz.js": "0.0.6"
   },

@@ -15,10 +15,12 @@ function requireVizJs() {
 }
 var viz = requireVizJs();
 
-var markdownIt = new MarkdownIt()
-  .use(markdownItAnchor, {
-    permalink: true
-  });
+var markdownIt = new MarkdownIt();
+markdownIt.use(require('markdown-it-anchor'), {
+  permalink: true,
+  permalinkBefore: true
+});
+markdownIt.use(require('markdown-it-highlightjs'));
 
 var defaultOptions = {
   selectors: {
@@ -97,8 +99,20 @@ function generate(md, options) {
   dot = dot.join('\n');
 
   output.dot = dot;
-  output.svg = viz(dot, 'svg')
-    .replace(/<title>%3<\/title>/i, '<title>' + title + '</title>');
+  var svg = viz(dot, 'svg');
+
+  svg = svg.replace(/<title>%3<\/title>/i, '<title>' + title + '</title>');
+
+  var defs= '<defs>\n'+
+    '    <filter color-interpolation-filters="sRGB" x="-0.15" width="1.3" y="-0.15" height="1.3" id="squiggle">\n'+
+    '        <feTurbulence baseFrequency="0.008" type="fractalNoise" seed="47" numOctaves="4" />\n'+
+    '        <feDisplacementMap in="SourceGraphic" xChannelSelector="R" yChannelSelector="B" scale="13.5" />\n'+
+    '    </filter>\n'+
+    '</defs>';
+
+  svg = svg.replace('<g', defs + '\n<g');
+
+  output.svg = svg;
   output.title = title;
   return output;
 }

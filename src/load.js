@@ -9,7 +9,7 @@ function renderOutput(output, options) {
   container.appendChild(diagram);
   if (options.includeContent !== false) {
     var content = document.createElement('section');
-    diagram.setAttribute('class', 'content');
+    content.setAttribute('class', 'content');
     content.innerHTML = output.html;
     container.appendChild(content);
   }
