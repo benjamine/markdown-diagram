@@ -1,20 +1,30 @@
 #!/usr/bin/env node
+var fs = require('fs');
 var _ = require('lodash');
 var markdownDiagram = require('../src/main');
+var program = require('commander');
+var packageInfo = require('../package.json');
 
-var fs = require('fs');
+var sourceFile;
+program
+  .version(packageInfo.version)
+  .usage('[options] <file>')
+  .option('-f, --format [format]', 'Output format: html or svg', 'html')
+  .option('-p, --parent [selector]', 'parent css selector')
+  .action(function(file){
+    sourceFile = file;
+  })
+  .parse(process.argv);
 
-var content;
-
-var file = process.argv[2];
-if (file){
-  content = fs.readFileSync(file).toString();
-} else {
-  content = fs.readFileSync('/dev/stdin').toString();
-}
-
+var content = fs.readFileSync(sourceFile ? sourceFile : '/dev/stdin').toString();
 var output = markdownDiagram.generate(content);
 
+if (program.format === 'svg') {
+  console.log(output.svg);
+  return;
+}
+
+// full html doc
 var template = _.template(fs.readFileSync(__dirname + '/template.html'));
 var html = template(output);
 console.log(html);
