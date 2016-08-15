@@ -18,6 +18,12 @@ To get a diagram, *next you have to define* [sections](#sections).
 Sections
 ---
 
+Properties:
+
+- a property of this section
+- another property
+- something else
+
 2nd level sections (`h2`) will become items on the diagram (to specify another parent element, use `?parent=#title-of-the-section` on the url). All sections *have* [permalink](#permalinks), *use permalinks to* [link sections](#link-sections) to each other.
 
 Permalinks
