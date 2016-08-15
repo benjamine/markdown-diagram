@@ -16,9 +16,11 @@
   <title><%- title %></title>
 </head>
 <body>
+  <%if (!noForkMe) {%>
   <a href="https://github.com/benjamine/markdown-diagram" id="fork_me">
     <img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
   </a>
+  <%}%>
   <section class="diagram">
     <%= svg %>
   </section>

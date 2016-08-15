@@ -24,7 +24,9 @@ markdownIt.use(require('markdown-it-highlightjs'));
 var defaultOptions = {
   selectors: {
     parent: 'h1,h2,h3,h4',
-    itemLinks: 'a'
+    itemLinks: 'a',
+    itemPropertyList: 'ul,ol,dl',
+    itemPropertyListItem: 'li,dt'
   }
 };
 
@@ -90,8 +92,39 @@ function generate(md, options) {
     items.each(function(index, element) {
       var item = $(element);
       var itemContent = item.nextUntil(opt.selectors.item);
+
+      var dotShape = 'box';
+
+      var propertyList = itemContent.filter(opt.selectors.itemPropertyList);
+      var properties = propertyList.filter(function(index, listElement) {
+        return /properties:?\s*$/i.test($(listElement).prev().text());
+      })
+      .first().find(opt.selectors.itemPropertyListItem);
+
+      dot.push('  "' + itemTitle(item) + '" [shape=' + dotShape + ', ');
+
+      if (!(properties && properties.length)) {
+        dot.push('label="' + itemTitle(item) + '", ');
+      } else {
+        dot.push('label=<' +
+          '<TABLE CELLPADDING="0" CELLSPACING="0" BORDER="0">' +
+          '<TR><TD>' + itemTitle(item) + '</TD></TR>' +
+          '<TR><TD>' +
+            '<FONT POINT-SIZE="8">' +
+            '<TABLE CELLPADDING="0" CELLSPACING="0" BORDER="0">');
+        properties.each(function(index, propertyElement) {
+          dot.push('<TR><TD>' + $(propertyElement).text() + '</TD></TR>');
+        });
+        dot.push(
+            '</TABLE>' +
+            '</FONT>' +
+          '</TD></TR>' +
+          '</TABLE>' +
+       '>, ');
+      }
+      dot.push(' URL="' + item.find('a').attr('href') + '"];');
+
       var links = itemContent.find(opt.selectors.itemLinks);
-      dot.push('  "' + itemTitle(item) + '" [shape=box, URL="' + item.find('a').attr('href') + '"];');
       links.each(function(index, linkElement) {
         var link = $(linkElement);
         var targetItem = itemsByUrl[link.attr('href')];
@@ -102,6 +135,7 @@ function generate(md, options) {
             '"' + label + ';');
         }
       });
+
     });
   }
 
@@ -109,6 +143,7 @@ function generate(md, options) {
   dot = dot.join('\n');
 
   output.dot = dot;
+
   var svg = viz(dot, 'svg');
 
   svg = svg.replace(/<title>%3<\/title>/i, '<title>' + title + '</title>');

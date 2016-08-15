@@ -6,10 +6,12 @@ var program = require('commander');
 var packageInfo = require('../package.json');
 
 var sourceFile;
+var additionalOptions = {};
 program
   .version(packageInfo.version)
   .usage('[options] <file>')
-  .option('-f, --format [format]', 'Output format: html or svg', 'html')
+  .option('-f, --format [format]', 'Output format: html, svg or dot', 'html')
+  .option('--no-fork-me', 'remove "fork me" banner from html output')
   .option('-p, --parent [selector]', 'parent css selector')
   .action(function(file){
     sourceFile = file;
@@ -19,12 +21,16 @@ program
 var content = fs.readFileSync(sourceFile ? sourceFile : '/dev/stdin').toString();
 var output = markdownDiagram.generate(content);
 
+if (program.format === 'dot') {
+  console.log(output.dot);
+  return;
+}
 if (program.format === 'svg') {
   console.log(output.svg);
   return;
 }
-
+additionalOptions.noForkMe = !program.forkMe;
 // full html doc
 var template = _.template(fs.readFileSync(__dirname + '/template.html'));
-var html = template(output);
+var html = template(_.merge(output, additionalOptions));
 console.log(html);
