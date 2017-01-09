@@ -1,6 +1,6 @@
 {
   "name": "markdown-diagram",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "generate diagrams from markdown documents",
   "main": "./src/main",
   "bin": {
