@@ -7,6 +7,6 @@ module.exports = function(config) {
       'public/build/markdown-diagram.js',
       'public/build/test-bundle.js'
     ],
-    reporters : ['spec', 'growler']
+    reporters: ['spec', 'growler']
   });
 };

@@ -16,10 +16,10 @@ npm i markdown-diagram -g
 markdown-diagram --help
 
 # generate full html doc
-cat ./public/page/services.md | markdown-diagram > services.html
+cat ./docs/page/services.md | markdown-diagram > services.html
 # OR
-markdown-diagram ./public/page/services.md > services.html
+markdown-diagram ./docs/page/services.md > services.html
 
 # only the svg diagram
-markdown-diagram --format svg ./public/page/services.md > services.svg
+markdown-diagram --format svg ./docs/page/services.md > services.svg
 ```

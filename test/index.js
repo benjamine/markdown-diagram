@@ -1,33 +1,31 @@
-/*
-* mocha's bdd syntax is inspired in RSpec
-*   please read: http://betterspecs.org/
-*/
+require('babel-register');
+require('../src/safe-babel-polyfill');
 require('./util/globals');
-var fs = require('fs');
-var path = require('path');
+
+const fs = require('fs');
+const path = require('path');
+const markdownDiagram = require('../src/main');
+/* globals describe, it, expect */
 
 describe('markdownDiagram', function() {
-  before(function() {
-  });
-  it('has a semver version', function() {
-    expect(markdownDiagram.version).to.match(/^\d+\.\d+\.\d+(-.*)?$/);
-  });
   describe('#generate', function() {
     it('outputs svg', function(done) {
+      console.log('testing svg output');
       function processMarkdown(md) {
-        var output = markdownDiagram.generate(md);
+        const output = markdownDiagram.generate(md);
+        console.log('got output');
         expect(output.svg).to.match(/<svg[\s\S]*<\/svg>/i);
         done();
       }
-      var md;
       if (process.browser) {
-        // markdownDiagram.ajax('/public/page/help.md', processMarkdown);
+        // markdownDiagram.ajax('/docs/page/help.md', processMarkdown);
         done();
         return;
-      } else {
-        md = fs.readFileSync(path.join(__dirname, '..', 'public', 'page', 'help.md')).toString();
-        processMarkdown(md);
       }
+      const filename = path.join(__dirname, '..', 'public', 'page', 'help.md');
+      const md = fs.readFileSync(filename).toString();
+      console.log('got md');
+      processMarkdown(md);
     });
   });
 });

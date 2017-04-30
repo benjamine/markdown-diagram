@@ -1,17 +1,11 @@
 
 bundle: node_modules
-	@./node_modules/.bin/gulp bundle
-
+	npm run bundle
 test: node_modules
-	@./node_modules/.bin/gulp test
+	npm test
 node_modules:
 	npm install
 watch: node_modules
-	@./node_modules/.bin/gulp watch
+	npm run watch
 
-test-browser: node_modules
-	@./node_modules/.bin/gulp test-browser
-watch-browser: node_modules
-	@./node_modules/.bin/gulp watch-browser
-
-.PHONY: test watch bundle test-browser watch-browser
+.PHONY: test watch bundle

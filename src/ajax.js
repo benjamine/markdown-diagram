@@ -1,5 +1,5 @@
-module.exports = function ajax(url, callback) {
-  var request = new XMLHttpRequest();
+export default function ajax(url, callback) {
+  const request = new window.XMLHttpRequest();
   request.open('GET', url, true);
   request.onload = function() {
     if (this.status >= 200 && this.status < 400) {

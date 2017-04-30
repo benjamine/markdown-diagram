@@ -1,14 +1,14 @@
-var generate = require('./generator').generate;
-var ajax = require('./ajax');
+import {generate} from './generator';
+import ajax from './ajax';
 
 function renderOutput(output, options) {
-  var container = document.createElement('div');
-  var diagram = document.createElement('section');
+  const container = document.createElement('div');
+  const diagram = document.createElement('section');
   diagram.setAttribute('class', 'diagram');
   diagram.innerHTML = output.svg;
   container.appendChild(diagram);
   if (options.includeContent !== false) {
-    var content = document.createElement('section');
+    const content = document.createElement('section');
     content.setAttribute('class', 'content');
     content.innerHTML = output.html;
     container.appendChild(content);
@@ -19,26 +19,18 @@ function renderOutput(output, options) {
   document.body.appendChild(container);
 }
 
-function load(options) {
-  var output;
-
-  options = options || {};
+export default function load(options = {}) {
   if (!options.selectors) {
     options.selectors = {};
-  }
-  if (!options.selectors.parent) {
-    options.selectors.parent = 'h1,h2,h3,h4';
   }
 
   if (options.url) {
     ajax(options.url, function(source) {
-      output = generate(source, options);
+      const output = generate(source, options);
       renderOutput(output, options);
     });
     return;
   }
-  output = generate(document.body.innerHTML, options);
+  const output = generate(document.body.innerHTML, options);
   renderOutput(output, options);
 }
-
-module.exports = load;

@@ -1,0 +1,50 @@
+{
+  "extends": [
+    "standard"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "standard",
+    "fp"
+  ],
+  "rules": {
+    "semi": [2, "always"],
+    "space-before-function-paren": [2, "never"],
+    "max-len": [2, 120, 2],
+    "camelcase": [2, {"properties": "always"}],
+    "linebreak-style": [2, "unix"],
+    "new-cap": [2, { "newIsCap": true, "capIsNew": true }],
+    "arrow-body-style": [2, "as-needed"],
+    "arrow-parens": [2, "as-needed"],
+    "prefer-arrow-callback": 0,
+    "prefer-template": 0,
+
+    "no-var": 2,
+    "no-undef": 2,
+    "no-param-reassign": 2
+
+  },
+  "ecmaFeatures": {
+    "binaryLiterals": false,
+    "blockBindings": true,
+    "defaultParams": true,
+    "forOf": true,
+    "generators": false,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralDuplicateProperties": false,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "octalLiterals": false,
+    "regexUFlag": false,
+    "regexYFlag": false,
+    "templateStrings": true,
+    "unicodeCodePointEscapes": false,
+    "jsx": false
+  },
+  "globals": {
+  },
+  "env": {
+    "browser": false,
+    "node": true
+  }
+}
